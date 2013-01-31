@@ -1,0 +1,22 @@
+{
+    "global": {
+        "firstController": "home",
+        "mainController": "main",
+        "hasCustomTabs":true,
+        "defaultLanguage": "en",
+        "animationDuration": 800,
+        "downloadFolder":"download",
+        "msgType": "info"
+    },
+    "env:development": {
+        "isDebug": true
+    },
+    "env:test": {},
+    "env:production": {},
+    "os:ios": {},
+    "os:android": {},
+    "dependencies": {
+        "tabs": "1.0",
+        "loading": "1.0"
+    }
+}

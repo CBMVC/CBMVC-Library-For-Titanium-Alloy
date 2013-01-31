@@ -1,0 +1,6 @@
+<Alloy>
+	<View id="postContainer">
+        <Label id="postText"></Label>
+        <Button id="back" >back to previous controller</Button>
+	</View>
+</Alloy>

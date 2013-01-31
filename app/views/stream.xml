@@ -1,0 +1,6 @@
+<Alloy>
+	<View class="container">
+        <Label id="text"></Label>
+        <Button id="back" >slide back to home</Button>
+	</View>
+</Alloy>

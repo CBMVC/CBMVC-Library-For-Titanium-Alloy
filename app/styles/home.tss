@@ -1,0 +1,20 @@
+".container": {
+    backgroundColor: "blue",
+    height: '100%',
+    //left:0
+},
+
+"#text":{
+    backgroundColor: "#ffffff",
+    with:300,
+    height:50,
+    top:'10%',
+    left:20
+},
+
+'#goN2':{
+    bottom: 0
+},
+'#popup':{
+    top: '30%'
+}

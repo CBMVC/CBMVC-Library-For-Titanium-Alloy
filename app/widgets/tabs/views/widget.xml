@@ -1,0 +1,19 @@
+<Alloy>
+	<View id="root" class="container">
+		<View id="home" class="tab">
+			<ImageView id="homeIcon"	/>
+		</View>
+		<View id="agenda" class="tab">
+			<ImageView id="agendaIcon"/>
+		</View>
+		<View id="post" class="tab">
+			<Button id="postIcon"/>
+		</View>
+		<View id="stream" class="tab">
+			<ImageView id="streamIcon"/>
+		</View>
+		<View id="venue" class="tab">
+			<ImageView id="venueIcon"/>
+		</View>
+	</View>
+</Alloy>

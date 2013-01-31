@@ -1,0 +1,15 @@
+"#postContainer": {
+	backgroundColor: "#eeeeee",
+    height: '100%'
+},
+"#postText":{
+    top:10,
+    font: {
+        fontWeight:'bold',
+        fontFamily:'Quicksand-Bold',
+        fontSize:'18dp'
+    }
+},
+"#back":{
+    top: '50%'
+}

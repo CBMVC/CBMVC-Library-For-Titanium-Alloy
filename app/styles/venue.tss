@@ -1,0 +1,15 @@
+".container": {
+	backgroundColor: "#423edaf",
+    height: '100%'
+},
+"#text":{
+    top:10,
+    font: {
+        fontWeight:'bold',
+        fontFamily:'Quicksand-Bold',
+        fontSize:'18dp'
+    }
+},
+"#back":{
+    top: '50%'
+}

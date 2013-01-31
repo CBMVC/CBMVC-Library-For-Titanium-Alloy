@@ -1,0 +1,10 @@
+"#container": {
+    backgroundColor: "red",
+    height: '100%',
+    opacity:0
+},
+"#content":{
+    backgroundColor: "yellow",
+    top: '10%',
+    height: '80%'
+}

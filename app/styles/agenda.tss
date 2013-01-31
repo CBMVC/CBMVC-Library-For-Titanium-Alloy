@@ -1,0 +1,8 @@
+"#page2container": {
+    backgroundColor: "green",
+    height: '100%',
+    left:0
+},
+"#back":{
+    top: '50%'
+}

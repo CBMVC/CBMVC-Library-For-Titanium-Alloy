@@ -1,0 +1,8 @@
+".container": {
+	backgroundColor: "white",
+    left:0
+},
+"#switchLang":{
+    top:0,
+    right:0
+}

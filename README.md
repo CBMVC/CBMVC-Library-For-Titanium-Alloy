@@ -86,7 +86,7 @@ You can easy switch the controller with `CB.pushController` method, there are 7 
 1. `{string} args.controller`, just a controller name within Alloy, etc. "agenda"
 2. `{enum} args.animation`, the animation type, this is a enum object defined in UI namespace:
 
-      /*
+    	/*
          * Animation style
          * all animations are support ios and android
          */
