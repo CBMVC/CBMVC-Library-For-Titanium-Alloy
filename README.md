@@ -137,6 +137,7 @@ Get the data within next controller:
     };
 
 5.`{Function} args.callback`, a callback function after switch to next controller
+
 6.`{bool} args.noTabs`, if you use the tabs widget, then you need to use this to handle the tabs. you can set this default in the `config.json` file:
 
 `"hasCustomTabs":true`
