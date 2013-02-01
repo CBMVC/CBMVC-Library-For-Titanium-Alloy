@@ -36,7 +36,7 @@ The following is a list of directories and files that can be found in a CBMVC_Al
 4. `app/lib/ui.js`      it's a ui helper , you can generate the ui component within this file
 5. `app/lib/util.js`    it's a utility helper , you can use many useful functions in this file
 
-aAl helper functions are require in core.js file, and the namespace is under the Alloy.Globals, you can find the following code in the `app/alloy.js`:
+All helper functions are require in core.js file, and the namespace is under the Alloy.Globals, you can find the following code in the `app/alloy.js`:
 
     Alloy.Globals.CB = require('core');
 
@@ -83,8 +83,8 @@ You can easy switch the controller with `CB.pushController` method, there are 7 
     CB.pushController = function(args);
 
 #### How to use the parameters:
-1. `{string} args.controller`, just a controller name within Alloy, etc. "agenda"
-2. `{enum} args.animation`, the animation type, this is a enum object defined in UI namespace:
+1.`{string} args.controller`, just a controller name within Alloy, etc. "agenda"
+2.`{enum} args.animation`, the animation type, this is an enum object defined in UI namespace:
 
     	/*
          * Animation style
@@ -111,11 +111,11 @@ You can easy switch the controller with `CB.pushController` method, there are 7 
             SlideDown: 8
     	};
 
-3. `{int} args.duration`, set the animation duration, by default, it's set in `config.json`:
+3.`{int} args.duration`, set the animation duration, by default, it's set in `config.json`:
 
 `"animationDuration": 500`
 
-4. `{JSON} args.data`, pass data to next controller, it's a JSON format:
+4.`{JSON} args.data`, pass data to next controller, it's a JSON format:
 
     Alloy.Globals.CB.pushController({
         controller: 'agenda',
@@ -135,8 +135,8 @@ Get the data within next controller:
         Alloy.Globals.CB.Debug.dump(data.test, 4, 'agenda');
     };
 
-5. `{Function} args.callback`, a callback function after switch to next controller
-6. `{bool} args.noTabs`, if you use the tabs widget, then you need to use this to handle the tabs. you can set this default in the `config.json` file:
+5.`{Function} args.callback`, a callback function after switch to next controller
+6.`{bool} args.noTabs`, if you use the tabs widget, then you need to use this to handle the tabs. you can set this default in the `config.json` file:
 
 `"hasCustomTabs":true`
 
@@ -144,9 +144,9 @@ If set `hasCustomTabs` to `true` in config.json file, it will run the `setTab()`
 
 But in some situation, you may not want to set the current tab, then just set `args.noTabs:true` is ok.
 
-7. `{string} args.currTab`, set the current tab by tab's name
-8. `{bool} args.showInd`, whether need to show an activity indicator when switch to next controller
-9. `{enum} args.action`, this is an enum object to set the push action, you can remember the previous one and just back to it:
+7.`{string} args.currTab`, set the current tab by tab's name
+8.`{bool} args.showInd`, whether need to show an activity indicator when switch to next controller
+9.`{enum} args.action`, this is an enum object to set the push action, you can remember the previous one and just back to it:
 
         /*
          * Navigation action, just for pushController method
