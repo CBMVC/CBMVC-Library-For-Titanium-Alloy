@@ -84,6 +84,7 @@ You can easy switch the controller with `CB.pushController` method, there are 7 
 
 #### How to use the parameters:
 1.`{string} args.controller`, just a controller name within Alloy, etc. "agenda"
+
 2.`{enum} args.animation`, the animation type, this is an enum object defined in UI namespace:
 
     	/*
@@ -145,7 +146,9 @@ If set `hasCustomTabs` to `true` in config.json file, it will run the `setTab()`
 But in some situation, you may not want to set the current tab, then just set `args.noTabs:true` is ok.
 
 7.`{string} args.currTab`, set the current tab by tab's name
+
 8.`{bool} args.showInd`, whether need to show an activity indicator when switch to next controller
+
 9.`{enum} args.action`, this is an enum object to set the push action, you can remember the previous one and just back to it:
 
         /*
