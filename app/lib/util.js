@@ -220,7 +220,7 @@ Utility.actInd = {
         win.actInd.hide();
         win.actInd.isHide = true;
 
-        if(this.isAndroid) {
+        if(Utility.isAndroid) {
             win.actInd.message = Utility.L('loading');
             win.add(win.actInd);
         } else {
@@ -263,7 +263,7 @@ Utility.actInd = {
             win.actIndContainer.hide();
 
             win.actIndContainer.actIndBg.add(win.actInd);
-            if(!this.isAndroid) {
+            if(!Utility.isAndroid) {
                 win.actInd.style = Titanium.UI.iPhone.ActivityIndicatorStyle.DARK;
             }
         }
@@ -272,7 +272,7 @@ Utility.actInd = {
     },
     show: function(message) {
         if(message) {
-            if(!this.android) {
+            if(!Utility.isAndroid) {
                 Utility.actInd.actIndWin.actIndContainer.actIndBg.loading.text = message;
             } else {
                 Utility.actInd.actIndWin.actInd.message = message;
@@ -281,13 +281,15 @@ Utility.actInd = {
         if(Utility.actInd.actIndWin && Utility.actInd.actIndWin.actInd.isHide) {
             Utility.actInd.actIndWin.actInd.isHide = false;
             Utility.actInd.actIndWin.actInd.show();
-            if(!this.android) {
+            if(!Utility.isAndroid) {
                 Utility.actInd.actIndWin.actIndContainer.show();
+            }else{
+                //Utility.actInd.actIndWin.opacity = 1;
             }
         }
     },
     setMessage: function(message) {
-        if(!this.android) {
+        if(!Utility.isAndroid) {
             Utility.actInd.actIndWin.actIndContainer.actIndBg.loading.text = message;
         } else {
             Utility.actInd.actIndWin.actInd.message = message;
@@ -297,8 +299,10 @@ Utility.actInd = {
         if(Utility.actInd.actIndWin && !Utility.actInd.actIndWin.actInd.isHide) {
             Utility.actInd.actIndWin.actInd.isHide = true;
             Utility.actInd.actIndWin.actInd.hide();
-            if(!this.android) {
+            if(!Utility.isAndroid) {
                 Utility.actInd.actIndWin.actIndContainer.hide();
+            }else{
+                //Utility.actInd.actIndWin.opacity = 1;
             }
         }
     }
