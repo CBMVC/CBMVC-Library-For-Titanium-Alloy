@@ -219,91 +219,67 @@ Utility.actInd = {
 
         win.actInd.hide();
         win.actInd.isHide = true;
+        win.actInd.top = '-15%';
 
-        if(Utility.isAndroid) {
-            win.actInd.message = Utility.L('loading');
-            win.add(win.actInd);
-        } else {
-            win.actInd.top = '-15%';
+        win.actIndContainer = Ti.UI.createView({
+            height: Ti.UI.FILL,
+            width: Ti.UI.FILL
+        });
+        win.add(win.actIndContainer);
 
-            win.actIndContainer = Ti.UI.createView({
-                height: Ti.UI.FILL,
-                width: Ti.UI.FILL
-            });
-            win.add(win.actIndContainer);
+        win.actIndContainer.mainBg = Ti.UI.createView({
+            height: Ti.UI.FILL,
+            width: Ti.UI.FILL,
+            backgroundColor: '#333',
+            opacity: 0.8
+        });
+        win.actIndContainer.add(win.actIndContainer.mainBg);
 
-            win.actIndContainer.mainBg = Ti.UI.createView({
-                height: Ti.UI.FILL,
-                width: Ti.UI.FILL,
-                backgroundColor: '#333',
-                opacity: 0.8
-            });
-            win.actIndContainer.add(win.actIndContainer.mainBg);
+        win.actIndContainer.actIndBg = Ti.UI.createView({
+            backgroundColor: '#000',
+            center: {
+                x: Ti.Platform.displayCaps.platformWidth / 2,
+                y: Ti.Platform.displayCaps.platformHeight / 2
+            },
+            width: 150,
+            height: 100,
+            borderRadius: 10
+        });
+        win.actIndContainer.add(win.actIndContainer.actIndBg);
 
-            win.actIndContainer.actIndBg = Ti.UI.createView({
-                backgroundColor: '#000',
-                center: {
-                    x: Ti.Platform.displayCaps.platformWidth / 2,
-                    y: Ti.Platform.displayCaps.platformHeight / 2
-                },
-                width: 150,
-                height: 100,
-                borderRadius: 10
-            });
-            win.actIndContainer.add(win.actIndContainer.actIndBg);
+        win.actIndContainer.actIndBg.loading = Ti.UI.createLabel({
+            text: Utility.L('loading'),
+            color: '#fff',
+            left: '30%',
+            bottom: '25%'
+        });
+        win.actIndContainer.actIndBg.add(win.actIndContainer.actIndBg.loading);
 
-            win.actIndContainer.actIndBg.loading = Ti.UI.createLabel({
-                text: Utility.L('loading'),
-                color: '#fff',
-                left: '30%',
-                bottom: '25%'
-            });
-            win.actIndContainer.actIndBg.add(win.actIndContainer.actIndBg.loading);
+        win.actIndContainer.hide();
 
-            win.actIndContainer.hide();
-
-            win.actIndContainer.actIndBg.add(win.actInd);
-            if(!Utility.isAndroid) {
-                win.actInd.style = Titanium.UI.iPhone.ActivityIndicatorStyle.DARK;
-            }
-        }
-
+        win.actIndContainer.actIndBg.add(win.actInd);
+        win.actInd.style = Titanium.UI.iPhone.ActivityIndicatorStyle.DARK;
+        // }
         Utility.actInd.actIndWin = win;
     },
     show: function(message) {
         if(message) {
-            if(!Utility.isAndroid) {
-                Utility.actInd.actIndWin.actIndContainer.actIndBg.loading.text = message;
-            } else {
-                Utility.actInd.actIndWin.actInd.message = message;
-            }
+            Utility.actInd.actIndWin.actIndContainer.actIndBg.loading.text = message;
         }
         if(Utility.actInd.actIndWin && Utility.actInd.actIndWin.actInd.isHide) {
             Utility.actInd.actIndWin.actInd.isHide = false;
             Utility.actInd.actIndWin.actInd.show();
-            if(!Utility.isAndroid) {
-                Utility.actInd.actIndWin.actIndContainer.show();
-            }else{
-                //Utility.actInd.actIndWin.opacity = 1;
-            }
+            Utility.actInd.actIndWin.actIndContainer.show();
         }
     },
     setMessage: function(message) {
-        if(!Utility.isAndroid) {
-            Utility.actInd.actIndWin.actIndContainer.actIndBg.loading.text = message;
-        } else {
-            Utility.actInd.actIndWin.actInd.message = message;
-        }
+        Utility.actInd.actIndWin.actIndContainer.actIndBg.loading.text = message;
     },
     hide: function() {
         if(Utility.actInd.actIndWin && !Utility.actInd.actIndWin.actInd.isHide) {
             Utility.actInd.actIndWin.actInd.isHide = true;
             Utility.actInd.actIndWin.actInd.hide();
-            if(!Utility.isAndroid) {
-                Utility.actInd.actIndWin.actIndContainer.hide();
-            }else{
-                //Utility.actInd.actIndWin.opacity = 1;
-            }
+            Utility.actInd.actIndWin.actIndContainer.hide();
         }
     }
 };
