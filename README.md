@@ -9,7 +9,6 @@ The example project here shows you how to build navigate betweens pages (with an
 
 With this library, please update your titanium sdk to 3.0.
 
-
 # Feature
 
 1. Base on Alloy, use a namespace for the structure, it can avoid the memeory leak.
@@ -23,6 +22,15 @@ With this library, please update your titanium sdk to 3.0.
 9. Support the object debug, can set the debug message show in which line and file
 10. Support the top, center and bottom layout (reference to [Codestrong](https://github.com/appcelerator/Codestrong))
 11. Support comstom tabs (reference to [Codestrong](https://github.com/appcelerator/Codestrong))
+12. (ver1.1) Support wordpress xml-rpc
+
+# Version 1.1
+
+1. add: support wordpress xml-rpc format, the detail example please take a look the `/app/controllers/post.js` line 38
+2. bug fixed:
+    1) Activity Indicator always load on android ([issue#1](https://github.com/CBMVC/CBMVC-Library-For-Titanium-Alloy/issues/1))
+    2) There is a blink issue when switch controller on android ([issue#1](https://github.com/CBMVC/CBMVC-Library-For-Titanium-Alloy/issues/2))
+
 
 # How it work
 
