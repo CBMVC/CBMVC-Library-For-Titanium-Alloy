@@ -5,7 +5,7 @@ $.onLoad = function() {
     //init the Activity Indicator
     Alloy.Globals.CB.Util.actInd.init($.container);
 
-    var firstController = Alloy.createController(Alloy.CFG.firstController);
+    var firstController = Alloy.Globals.CB.getCurrentController();
     $.content.add(firstController.getView());
 
     $.container.animate({

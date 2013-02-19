@@ -43,6 +43,17 @@ CB.init = function(mainContent) {
     _mainContent = mainContent.main;
     _currentController = Alloy.createController(Alloy.CFG.firstController);
 };
+/**
+ * Get current controller
+ * @return {[type]} [description]
+ */
+CB.getCurrentController = function(){
+    if(_currentController === undefined){
+        _currentController = Alloy.createController(Alloy.CFG.firstController);
+    }
+
+    return _currentController;
+};
 
 /**
 * Push controller for page switch
