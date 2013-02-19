@@ -28,15 +28,9 @@ With this library, please update your titanium sdk to 3.0.
 1. add: support wordpress xml-rpc format, the detail example please take a look the `/app/controllers/post.js` line 38
 2. bug fixed:
 
-<<<<<<< HEAD
-a.Activity Indicator always load on android ([issue#1](https://github.com/CBMVC/CBMVC-Library-For-Titanium-Alloy/issues/1))
-
-b.There is a blink issue when switch controller on android ([issue#1](https://github.com/CBMVC/CBMVC-Library-For-Titanium-Alloy/issues/2))
-=======
     1) Activity Indicator always load on android ([issue#1](https://github.com/CBMVC/CBMVC-Library-For-Titanium-Alloy/issues/1))
     2) There is a blink issue when switch controller on android ([issue#1](https://github.com/CBMVC/CBMVC-Library-For-Titanium-Alloy/issues/2))
     3) The first controller will load twice when first time start the app
->>>>>>> update readme
 
 
 # How it work
