@@ -28,9 +28,15 @@ With this library, please update your titanium sdk to 3.0.
 1. add: support wordpress xml-rpc format, the detail example please take a look the `/app/controllers/post.js` line 38
 2. bug fixed:
 
+<<<<<<< HEAD
 a.Activity Indicator always load on android ([issue#1](https://github.com/CBMVC/CBMVC-Library-For-Titanium-Alloy/issues/1))
 
 b.There is a blink issue when switch controller on android ([issue#1](https://github.com/CBMVC/CBMVC-Library-For-Titanium-Alloy/issues/2))
+=======
+    1) Activity Indicator always load on android ([issue#1](https://github.com/CBMVC/CBMVC-Library-For-Titanium-Alloy/issues/1))
+    2) There is a blink issue when switch controller on android ([issue#1](https://github.com/CBMVC/CBMVC-Library-For-Titanium-Alloy/issues/2))
+    3) The first controller will load twice when first time start the app
+>>>>>>> update readme
 
 
 # How it work
@@ -96,11 +102,11 @@ You can easy switch the controller with `CB.pushController` method, there are 7 
 
 2.`{enum} args.animation`, the animation type, this is an enum object defined in UI namespace:
 
-    	/*
+        /*
          * Animation style
          * all animations are support ios and android
          */
-    	UI.AnimationStyle = {
+        UI.AnimationStyle = {
             //no animation
             None: 0,
             //fade in animation
@@ -119,7 +125,7 @@ You can easy switch the controller with `CB.pushController` method, there are 7 
             SlideUp: 7,
             //slide with down animation, just like close a modle windows
             SlideDown: 8
-    	};
+        };
 
 3.`{int} args.duration`, set the animation duration, by default, it's set in `config.json`:
 
@@ -206,7 +212,7 @@ It's just echo the message or simple variable, you can pass the current line and
 
 2.Alloy.Globals.CB.Debug.dump:
 
-	/**
+    /**
      * General dump the object
      * @param {Object} o, dump object
      * @param {int} line, the line of debug object
