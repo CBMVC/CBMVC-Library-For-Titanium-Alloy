@@ -9,22 +9,23 @@ $.onLoad = function() {
     var ddlData = [];
     //push data into this array
     ddlData.push({
-        text : 'Yes',
-        value : 1
+        text: 'Yes',
+        value: 1
     }, {
-        text : 'No',
-        value : 0,
-        selected : 'selected'
+        text: 'No',
+        value: 0,
+        selected: 'selected'
     });
     //setup the dropdown list data
     var ddlArgs = {
-        id : 'test',
-        top : '15%',
-        left : '1%',
-        width : '20%',
-        height : '75%',
-        items : ddlData,    //pass the dropdown list data
-        callback : function(ddlEvent) {
+        id: 'test',
+        top: '15%',
+        left: '1%',
+        width: '20%',
+        height: '75%',
+        items: ddlData,
+        //pass the dropdown list data
+        callback: function(ddlEvent) {
             //implement the callback function
             Alloy.Globals.CB.Debug.dump(ddlEvent, 26, 'post.js');
         }
@@ -34,6 +35,32 @@ $.onLoad = function() {
     $.postContainer.add($.ddlObj);
 };
 
+$.getBlogData.on('click', function(e) {
+    var xmlArgs = {
+        method: 'wp.getPost',
+        //method: 'wp.getComments',
+        startLevel: 3,
+        params:[
+           {name:'blog_id', type:'int', value:'1'},
+           {name:'username', type:'string', value:'username'},
+           {name:'password', type:'string', value:'password'},
+           // {name:'filter', type:'struct', value:[
+           //      {name:'post_type', type:'string', value:'post'},
+           //      {name:'post_status', type:'string', value:''},
+           //      {name:'number', type:'int', value:'5'},
+           //      {name:'offset', type:'int', value:''},
+           //      {name:'orderby', type:'string', value:''},
+           //      {name:'order', type:'string', value:''}
+           // ]}
+           {name:'post_id', type:'int', value:'1967'}
+       ],
+       callback:function(data){
+            Alloy.Globals.CB.Debug.dump(data, 63, 'post');
+       }
+    };
+     Alloy.Globals.CB.WP.xmlRPC(xmlArgs);
+
+});
 
 $.back.on('click', function(e) {
     Alloy.Globals.CB.pushController({
@@ -43,7 +70,9 @@ $.back.on('click', function(e) {
     });
 });
 
-$.onClose = function(){
-    $.ddlObj.close();
+$.onClose = function() {
+    if($.ddlObj) {
+        $.ddlObj.close();
+    }
     Alloy.Globals.CB.Debug.echo('====on post close====', 45, 'post.js');
 };

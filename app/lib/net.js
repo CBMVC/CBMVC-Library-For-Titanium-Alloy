@@ -17,13 +17,16 @@
 
 var Alloy = require('alloy'),
     util = require('util'),
-    debug = require('debug');
+    debug = require('debug'),
+    webService = Alloy.CFG.webService;
 /**
  * HTTP Request Helper
  */
 var Net = function() {};
 
-Net.init = function() {};
+Net.setWebService = function(ws) {
+    webService = ws;
+};
 
 /**
  * Standard HTTP Request
@@ -32,13 +35,31 @@ Net.init = function() {};
  *  opts.timeout    : int Timeout request
  *  opts.type       : string GET/POST
  *  opts.data       : mixed The data to pass
- *  opts.url        : string The url source to call
+ *  opts.url        : the remote url to call
+ *  opts.method     : the remote method to call
  *  opts.onerror    : funtion A function to execute when there is an XHR error
  *  opts.onload     : callback function in onload event
+ *  opts.notToJSON  : whether return JSON format, default is return to JSON
+ *  opts.returnXML  : whether return XML format, default is return Text
  */
 Net.request = function(opts) {
     // Setup the xhr object
-    var xhr = Ti.Network.createHTTPClient();
+    var xhr = Ti.Network.createHTTPClient(),
+        url = webService;
+
+    //check the network status at first
+    if(!Ti.Network.online){
+        util.alert(util.L('networkError'),util.L('error'));
+        return;
+    }
+    if(opts.url){
+        url = opts.url;
+    }
+    //check whether has defined a webservice
+    if(!url){
+        util.alert(util.L('noWebService'),util.L('error'));
+        return;
+    }
 
     // Set the timeout or a default if one is not provided
     //xhr.timeout = (opts.timeout) ? opts.timeout : 2000;
@@ -47,6 +68,9 @@ Net.request = function(opts) {
      * @param {Object} e The callback object
      */
     xhr.onerror = function(e) {
+        if(Alloy.Globals.CB.Util.actInd.actIndWin.actInd.isHide){
+            Alloy.Globals.CB.Util.actInd.hide();
+        }
         if(opts.onerror) {
             opts.onerror(e);
         } else {
@@ -62,14 +86,19 @@ Net.request = function(opts) {
      */
     xhr.onload = function() {
         // If successful
-        //debug.echo('===onload========', 65, 'net.js');
+        //debug.dump(this.responseText, 85, 'net.js');
+        //debug.dump(this.responseXML, 86, 'net.js');
         try {
             if(opts.isDownload) {
                 opts.onload && opts.onload(xhr.status, this.responseData);
-            } else {
+            }else if(opts.returnXML){
+                opts.onload(this.responseXML);
+            }else {
                 var data = this.responseText;
                 if(data) {
-                    data = JSON.parse(data);
+                    if(!opts.notToJSON){
+                        data = JSON.parse(data);
+                    }
                     if(opts.onload) {
                         opts.onload(data);
                     } else {
@@ -93,10 +122,14 @@ Net.request = function(opts) {
     };
 
     // Open the remote connection
+    if(opts.method){
+        url += webService + opts.method;
+    }
+debug.echo(url,121,'net');
     if(opts.type) {
-        xhr.open(opts.type, opts.url);
+        xhr.open(opts.type, url);
     } else {
-        xhr.open('GET', opts.url);
+        xhr.open('GET', url);
     }
 
     xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
@@ -186,6 +219,8 @@ Net.downloadBatchFiles = function(files, callback, downloadedFiles) {
     } else {
         callback && callback(downloadedFiles);
     }
-},
+};
+
+
 
 module.exports = Net;

@@ -1,7 +1,7 @@
 /**
  * @file overview This file contains the core framework class CBMVC_Alloy.
  * @author Winson  winsonet@gmail.com
- * @version v1.0
+ * @version v1.1
  * @copyright Winson http://www.coderblog.in
  * @license MIT License http://www.opensource.org/licenses/mit-license.php
  *
@@ -31,7 +31,7 @@ CB.Version = Ti.App.version;
 CB.UI = require('ui');
 CB.Util = require('util');
 CB.Net = require('net');
-//CB.DB = require('db');
+CB.WP = require('wp');
 CB.Debug = require('debug');
 
 /**
@@ -78,7 +78,7 @@ CB.pushController = function(args) {
 
     if(args.action && args.action == CB.UI.NavAction.Back) {
         args.controller = _previousController;
-        Alloy.Globals.CB.Debug.echo('_previousController:==' + _previousController, 61, 'core.js');
+        Alloy.Globals.CB.Debug.echo('_previousController:==' + _previousController, 81, 'core.js');
     }
 
     _currentController = Alloy.createController(args.controller, args.data || {});
@@ -88,12 +88,13 @@ CB.pushController = function(args) {
     currentView.name = args.controller;
     _mainContent.width = Ti.Platform.displayCaps.platformWidth;
     currentView.width = Ti.Platform.displayCaps.platformWidth;
-    _mainContent.add(currentView);
+    //_mainContent.add(currentView);
     //currentView.opacity = 0;
     switch(args.animation) {
         case CB.UI.AnimationStyle.FadeIn:
             currentView.left = 0;
             currentView.opacity = 0;
+            _mainContent.add(currentView);
             currentView.animate({
                 opacity: 1,
                 duration: args.duration
@@ -104,6 +105,7 @@ CB.pushController = function(args) {
         case CB.UI.AnimationStyle.FadeOut:
             currentView.left = 0;
             currentView.opacity = 0;
+            _mainContent.add(currentView);
             oldView.opacity = 1;
             oldView.animate({
                 opacity: 0,
@@ -118,10 +120,11 @@ CB.pushController = function(args) {
             });
             break;
         case CB.UI.AnimationStyle.NavLeft:
+            currentView.left = Ti.Platform.displayCaps.platformWidth;
+            _mainContent.add(currentView);
             _mainContent.children[0].left = 0;
             _mainContent.children[0].width = Ti.Platform.displayCaps.platformWidth;
             _mainContent.width = Ti.Platform.displayCaps.platformWidth * 2;
-            currentView.left = Ti.Platform.displayCaps.platformWidth;
             _mainContent.left = 0;
             _mainContent.animate({
                 left: -currentView.left,
@@ -134,13 +137,15 @@ CB.pushController = function(args) {
             });
             break;
         case CB.UI.AnimationStyle.NavRight:
-            _mainContent.children[0].left = 0;
+            //_mainContent.children[0].left = 0;
             _mainContent.width = Ti.Platform.displayCaps.platformWidth * 2;
             _mainContent.left = -Ti.Platform.displayCaps.platformWidth;
+            _mainContent.children[0].left = 0;
             if(_mainContent.children.length > 1) {
                 _mainContent.children[1].left = Ti.Platform.displayCaps.platformWidth;
             }
             currentView.left = 0;
+            _mainContent.add(currentView);
             _mainContent.animate({
                 left: 0,
                 duration: args.duration
@@ -151,9 +156,10 @@ CB.pushController = function(args) {
             });
             break;
         case CB.UI.AnimationStyle.SlideLeft:
-            currentView.right = -Ti.Platform.displayCaps.platformWidth;
+            currentView.left = Ti.Platform.displayCaps.platformWidth;
+            _mainContent.add(currentView);
             currentView.animate({
-                right: 0,
+                left: 0,
                 duration: args.duration
             }, function() {
                 finishedPush(args, currentView, oldView, oldController);
@@ -171,6 +177,7 @@ CB.pushController = function(args) {
             break;
         case CB.UI.AnimationStyle.SlideUp:
             currentView.top = Ti.Platform.displayCaps.platformHeight * 2;
+            _mainContent.add(currentView);
             currentView.animate({
                 top: 0,
                 duration: args.duration

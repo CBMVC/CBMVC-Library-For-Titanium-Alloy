@@ -12,4 +12,7 @@
 },
 "#back":{
     top: '50%'
+},
+"#getBlogData":{
+    top: '30%'
 }

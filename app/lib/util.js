@@ -213,13 +213,12 @@ Utility.actInd = {
         win.actInd = Titanium.UI.createActivityIndicator({
             height: Ti.UI.FILL,
             width: Ti.UI.FILL,
-            zIndex: 100
+            bottom: '15%',
+            zIndex: 9999
             //font : {fontFamily:'Helvetica Neue', fontSize:15,fontWeight:'bold'}
         });
 
-        win.actInd.hide();
         win.actInd.isHide = true;
-        win.actInd.top = '-15%';
 
         win.actIndContainer = Ti.UI.createView({
             height: Ti.UI.FILL,
@@ -251,14 +250,21 @@ Utility.actInd = {
             text: Utility.L('loading'),
             color: '#fff',
             left: '30%',
-            bottom: '25%'
+            bottom: '10%'
         });
         win.actIndContainer.actIndBg.add(win.actIndContainer.actIndBg.loading);
 
         win.actIndContainer.hide();
-
+        if(Utility.isAndroid){
+            Alloy.Globals.CB.Debug.echo('=======android====`', 261, 'util.js');
+            win.actIndContainer.zIndex = -9999;
+            win.actInd.style = Titanium.UI.ActivityIndicatorStyle.PLAIN;
+        }else{
+            Alloy.Globals.CB.Debug.echo('======iphone=====`', 265, 'util.js');
+            win.actInd.style = Titanium.UI.iPhone.ActivityIndicatorStyle.BIG;
+        }
+        win.actInd.show();
         win.actIndContainer.actIndBg.add(win.actInd);
-        win.actInd.style = Titanium.UI.iPhone.ActivityIndicatorStyle.DARK;
         // }
         Utility.actInd.actIndWin = win;
     },
@@ -268,8 +274,11 @@ Utility.actInd = {
         }
         if(Utility.actInd.actIndWin && Utility.actInd.actIndWin.actInd.isHide) {
             Utility.actInd.actIndWin.actInd.isHide = false;
-            Utility.actInd.actIndWin.actInd.show();
             Utility.actInd.actIndWin.actIndContainer.show();
+            if(Utility.isAndroid){
+                Utility.actInd.actIndWin.actIndContainer.zIndex = 9999;
+            }
+
         }
     },
     setMessage: function(message) {
@@ -278,8 +287,10 @@ Utility.actInd = {
     hide: function() {
         if(Utility.actInd.actIndWin && !Utility.actInd.actIndWin.actInd.isHide) {
             Utility.actInd.actIndWin.actInd.isHide = true;
-            Utility.actInd.actIndWin.actInd.hide();
             Utility.actInd.actIndWin.actIndContainer.hide();
+            if(Utility.isAndroid){
+                Utility.actInd.actIndWin.actIndContainer.zIndex = -9999;
+            }
         }
     }
 };

@@ -1,4 +1,4 @@
 <Alloy>
-	<Window class="container">
+	<Window class="container" navBarHidden="true" fullscreen="true">
 	</Window>
 </Alloy>

@@ -6,6 +6,8 @@
         "defaultLanguage": "en",
         "animationDuration": 800,
         "downloadFolder":"download",
+        "webService":"http://www.coderblog.in/",
+        "xmlrpcService":"xmlrpc.php",
         "msgType": "info"
     },
     "env:development": {
