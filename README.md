@@ -29,6 +29,7 @@ With this library, please update your titanium sdk to 3.0.
 2. bug fixed:
 
 a.Activity Indicator always load on android ([issue#1](https://github.com/CBMVC/CBMVC-Library-For-Titanium-Alloy/issues/1))
+
 b.There is a blink issue when switch controller on android ([issue#1](https://github.com/CBMVC/CBMVC-Library-For-Titanium-Alloy/issues/2))
 
 
