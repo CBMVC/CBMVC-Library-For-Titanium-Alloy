@@ -6,7 +6,7 @@ and it's base on commonJS structure.
 
 The example project here shows you how to build navigate betweens pages (with animation), and how to use the helper functions.
 
-With this library, please update your titanium sdk to 3.0.
+With this library, please update your titanium sdk to 3.0. (it's seem there is a animation issue with ios if you use 3.1 sdk)
 
 # Feature
 
@@ -30,9 +30,9 @@ With this library, please update your titanium sdk to 3.0.
 
     1) Activity Indicator always load on android ([issue#1](https://github.com/CBMVC/CBMVC-Library-For-Titanium-Alloy/issues/1))
     
-    2) There is a blink issue when switch controller on android ([issue#1](https://github.com/CBMVC/CBMVC-Library-For-Titanium-Alloy/issues/2))
+    2) There is a blink issue when switch controller on android ([issue#2](https://github.com/CBMVC/CBMVC-Library-For-Titanium-Alloy/issues/2))
     
-    3) The first controller will load twice when first time start the app
+    3) The first controller will load twice when first time start the app ([issue#3](https://github.com/CBMVC/CBMVC-Library-For-Titanium-Alloy/issues/3))
 
 
 # How it work
