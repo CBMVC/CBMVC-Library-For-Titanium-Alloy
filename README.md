@@ -23,24 +23,20 @@ With this library, please update your titanium sdk to 3.0. (it's seem there is a
 11. Support comstom tabs (reference to [Codestrong](https://github.com/appcelerator/Codestrong))
 12. (ver1.1) Support wordpress xml-rpc
 
+# Version 1.1.221
+
+support Alloy 1.0 ([Alloy 1.0 changed](https://github.com/appcelerator/alloy/blob/master/CHANGELOG.md#backbone-events-api-removed-from-view-proxies-and-controllers))
+
 # Version 1.1
 
 1. add: support wordpress xml-rpc format, the detail example please take a look the `/app/controllers/post.js` line 38
 2. bug fixed:
 
     1) Activity Indicator always load on android ([issue#1](https://github.com/CBMVC/CBMVC-Library-For-Titanium-Alloy/issues/1))
-<<<<<<< HEAD
-    
+
     2) There is a blink issue when switch controller on android ([issue#2](https://github.com/CBMVC/CBMVC-Library-For-Titanium-Alloy/issues/2))
-    
+
     3) The first controller will load twice when first time start the app ([issue#3](https://github.com/CBMVC/CBMVC-Library-For-Titanium-Alloy/issues/3))
-=======
-
-    2) There is a blink issue when switch controller on android ([issue#2](https://github.com/CBMVC/CBMVC-Library-For-Titanium-Alloy/issues/2))
-
-    3) The first controller will load twice when first time start the app
->>>>>>> update readme
-
 
 # How it work
 

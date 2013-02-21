@@ -1,0 +1,7 @@
+<Alloy>
+    <View id="container">
+        <Require id="header" src="header"/>
+        <View id="content"></View>
+        <Require id="tabs" type="widget" src="tabs"/>
+    </View>
+</Alloy>
