@@ -5,7 +5,7 @@ $.onLoad = function() {
     Alloy.Globals.CB.Debug.dump(data.test, 4, 'agenda');
 };
 
-$.back.on('click', function(e) {
+$.back.addEventListener('click', function(e) {
     Alloy.Globals.CB.pushController({
         controller: 'home',
         animation: Alloy.Globals.CB.UI.AnimationStyle.NavRight,

@@ -1,5 +1,0 @@
-<Alloy>
-	<View class="container">
-        <Button id="switchLang">Switch Language</Button>
-	</View>
-</Alloy>

@@ -69,7 +69,7 @@ UI.fauxShadow = function() {
  * viewArgs: { //object properties for View proxy, if desired } });
  *
  * //e.selection contains the option key value that was selected by the user
- * header.on('change', function(e) {
+ * header.addEventListener('change', function(e) {
  *  })
  *
  */

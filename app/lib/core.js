@@ -151,10 +151,7 @@ CB.pushController = function(args) {
             //_mainContent.children[0].left = 0;
             _mainContent.width = Ti.Platform.displayCaps.platformWidth * 2;
             _mainContent.left = -Ti.Platform.displayCaps.platformWidth;
-            _mainContent.children[0].left = 0;
-            if(_mainContent.children.length > 1) {
-                _mainContent.children[1].left = Ti.Platform.displayCaps.platformWidth;
-            }
+            _mainContent.children[0].left = Ti.Platform.displayCaps.platformWidth;
             currentView.left = 0;
             _mainContent.add(currentView);
             _mainContent.animate({

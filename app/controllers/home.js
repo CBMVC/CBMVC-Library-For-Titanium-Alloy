@@ -5,8 +5,7 @@ $.onLoad = function() {
     $.text.text = Alloy.Globals.CB.Util.format(Alloy.Globals.CB.Util.L('text'),['just for test','==ok==']);
 };
 
-
-$.goNext.on('click', function(e) {
+$.goNext.addEventListener('click', function(e) {
     Alloy.Globals.CB.pushController({
         controller: 'agenda',
         animation: Alloy.Globals.CB.UI.AnimationStyle.NavLeft,
@@ -20,7 +19,7 @@ $.goNext.on('click', function(e) {
     });
 });
 
-$.goN2.on('click', function(e) {
+$.goN2.addEventListener('click', function(e) {
     Alloy.Globals.CB.Util.startLoading();
     Alloy.Globals.CB.pushController({
         controller: 'agenda',
@@ -33,7 +32,7 @@ $.goN2.on('click', function(e) {
     });
 });
 
-$.popup.on('click', function(e) {
+$.popup.addEventListener('click', function(e) {
 
     //clean download folder at first
     Alloy.Globals.CB.Util.cleanDownloadFolder();

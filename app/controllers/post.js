@@ -35,7 +35,7 @@ $.onLoad = function() {
     $.postContainer.add($.ddlObj);
 };
 
-$.getBlogData.on('click', function(e) {
+$.getBlogData.addEventListener('click', function(e) {
     var xmlArgs = {
         method: 'wp.getPost',
         //method: 'wp.getComments',
@@ -44,14 +44,6 @@ $.getBlogData.on('click', function(e) {
            {name:'blog_id', type:'int', value:'1'},
            {name:'username', type:'string', value:'username'},
            {name:'password', type:'string', value:'password'},
-           // {name:'filter', type:'struct', value:[
-           //      {name:'post_type', type:'string', value:'post'},
-           //      {name:'post_status', type:'string', value:''},
-           //      {name:'number', type:'int', value:'5'},
-           //      {name:'offset', type:'int', value:''},
-           //      {name:'orderby', type:'string', value:''},
-           //      {name:'order', type:'string', value:''}
-           // ]}
            {name:'post_id', type:'int', value:'1967'}
        ],
        callback:function(data){
@@ -62,7 +54,7 @@ $.getBlogData.on('click', function(e) {
 
 });
 
-$.back.on('click', function(e) {
+$.back.addEventListener('click', function(e) {
     Alloy.Globals.CB.pushController({
         action: Alloy.Globals.CB.UI.NavAction.Back,
         animation: Alloy.Globals.CB.UI.AnimationStyle.SlideDown,

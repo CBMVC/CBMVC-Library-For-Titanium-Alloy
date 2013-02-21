@@ -1,7 +1,7 @@
 <Alloy>
 	<View id="root" class="container">
 		<View id="home" class="tab">
-			<ImageView id="homeIcon"	/>
+			<ImageView id="homeIcon"/>
 		</View>
 		<View id="agenda" class="tab">
 			<ImageView id="agendaIcon"/>

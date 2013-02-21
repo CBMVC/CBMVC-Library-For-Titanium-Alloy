@@ -1,5 +1,0 @@
-<Alloy>
-    <View id="page2container">
-        <Button id="back" >back to home</Button>
-    </View>
-</Alloy>
