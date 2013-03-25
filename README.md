@@ -126,6 +126,7 @@ You can easy switch the controller with `CB.pushController` method, there are 7 
      * @param  {string}   args.currTab        , set the current tab name
      * @param  {bool} args.showInd          , whether show an activity indicator
      * @param  {enum} args.action           , what action to do when push the controller
+     * @param  {enum} args.static           , set the static page
      */
     CB.pushController = function(args);
 
