@@ -53,6 +53,8 @@ Page B go back function:
 
 The difference with `KeepBack` just it don't need to run the `onLoad` init function again.
 
+You can find the detail example within `home` push to `post` controller in the source code.
+
 
 # Version 1.1.221
 
