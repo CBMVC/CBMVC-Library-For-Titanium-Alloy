@@ -4,5 +4,10 @@
     left:0
 },
 "#back":{
-    top: '50%'
+    top: '1%'
+},
+"#table":{
+    top: '12%',
+    height:'80%',
+    width:'90%'
 }
