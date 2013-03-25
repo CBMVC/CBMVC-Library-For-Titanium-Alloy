@@ -34,7 +34,7 @@ The static page will save the previous page status, because in the CBMVC, it wil
 
 ### How to use static page?
 
-You can pass a parameter `isStatic` and set is `true` to next page use the `Alloy.Globals.CB.pushController` function, for example, the page A is listing page, it need to push to page B for show the detail, and B will back to A without `onLoad` function:
+You can pass a parameter `static` and set is `true` to next page use the `Alloy.Globals.CB.pushController` function, for example, the page A is listing page, it need to push to page B for show the detail, and B will back to A without `onLoad` function:
 
 page A push to B :
 
@@ -53,7 +53,7 @@ Page B go back function:
 
 The difference with `KeepBack` just it don't need to run the `onLoad` init function again.
 
-You can find the detail example within `home` push to `post` controller in the source code.
+You can find the detail example within `agenda` table list push to `post` controller in the source code.
 
 
 # Version 1.1.221
