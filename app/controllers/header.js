@@ -1,7 +1,7 @@
 $.switchLang.addEventListener('click',function(e){
     var lang = Alloy.Globals.CB.Util.loadObject('lang');
     if(lang == 'en'){
-        Alloy.Globals.CB.Util.switchLang('cn');
+        Alloy.Globals.CB.Util.switchLang('zh');
     }else{
         Alloy.Globals.CB.Util.switchLang('en');
     }

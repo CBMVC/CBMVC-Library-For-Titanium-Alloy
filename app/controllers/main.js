@@ -24,15 +24,20 @@ Alloy.Globals.Tabs = $.tabs;
 $.tabs && ($.tabs.on('change', function(e) {
     var ani = Alloy.Globals.CB.UI.AnimationStyle.FadeIn;
     var ac = null;
+    var currTab = e.name;
+    var isStatic = false;
     if(e.name == 'post') {
         ani = Alloy.Globals.CB.UI.AnimationStyle.SlideUp;
         ac = Alloy.Globals.CB.UI.NavAction.KeepBack;
+        currTab = '';
+        isStatic = true;
     }
 
     Alloy.Globals.CB.pushController({
         controller: e.name,
         action: ac,
-        noTabs: true,
-        animation: ani
+        currTab: currTab,
+        animation: ani,
+        static: isStatic
     });
 }));

@@ -51,7 +51,6 @@ $.getBlogData.addEventListener('click', function(e) {
        }
     };
      Alloy.Globals.CB.WP.xmlRPC(xmlArgs);
-
 });
 
 $.back.addEventListener('click', function(e) {

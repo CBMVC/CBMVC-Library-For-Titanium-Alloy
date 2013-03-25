@@ -23,6 +23,37 @@ With this library, please update your titanium sdk to 3.0. (it's seem there is a
 11. Support comstom tabs (reference to [Codestrong](https://github.com/appcelerator/Codestrong))
 12. (ver1.1) Support wordpress xml-rpc
 
+# Version 1.2
+
+fixed SlideDown and None Animation style cannot show the page
+add a feature to support a `static page`:
+
+### What's static page?
+
+The static page will save the previous page status, because in the CBMVC, it will create a new controller when you push to the page each time, so you have to init the data in `onLoad` function every time, but if you have a table listing page and detail page, you should not want to load the data every time in listing page when it back from detail page, so you can use a statice page for keep the previous page status just for turn back it.
+
+### How to use static page?
+
+You can pass a parameter `isStatic` and set is `true` to next page use the `Alloy.Globals.CB.pushController` function, for example, the page A is listing page, it need to push to page B for show the detail, and B will back to A without `onLoad` function:
+
+page A push to B :
+
+    Alloy.Globals.CB.pushController({
+        controller: 'B',
+        animation: Alloy.Globals.CB.UI.AnimationStyle.NavLeft,
+        static: true
+    });
+
+Page B go back function:
+
+    Alloy.Globals.CB.pushController({
+        action: Alloy.Globals.CB.UI.NavAction.Back,
+        animation: Alloy.Globals.CB.UI.AnimationStyle.NavRight
+    });
+
+The difference with `KeepBack` just it don't need to run the `onLoad` init function again.
+
+
 # Version 1.1.221
 
 support Alloy 1.0 ([Alloy 1.0 changed](https://github.com/appcelerator/alloy/blob/master/CHANGELOG.md#backbone-events-api-removed-from-view-proxies-and-controllers))
