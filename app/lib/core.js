@@ -1,7 +1,7 @@
 /**
  * @file overview This file contains the core framework class CBMVC_Alloy.
  * @author Winson  winsonet@gmail.com
- * @version v1.2
+ * @version v1.5
  * @copyright Winson http://www.coderblog.in
  * @license MIT License http://www.opensource.org/licenses/mit-license.php
  *
@@ -33,6 +33,9 @@ CB.Util = require('util');
 CB.Net = require('net');
 CB.WP = require('wp');
 CB.Debug = require('debug');
+CB.Date = require('date');
+CB.Youtube = require('youtube');
+
 
 /**
  * Init the core app setting

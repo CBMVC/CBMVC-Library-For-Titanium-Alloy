@@ -24,6 +24,8 @@ var Alloy = require('alloy'),
  */
 var UI = function() {};
 
+UI.viewScrollr = require("viewScrollr");
+
 // Zoom a view and dissipate it
 UI.zoom = function(view, callback) {
     var matrix = Ti.UI.create2DMatrix({
@@ -349,6 +351,162 @@ UI.createDropDownList = function(ddlArgs) {
         });
     };
     return ddlObj;
+};
+
+
+/**
+ * [createSettingView create the setting view]
+ * @param {view object} [arg.container] [the container need to be add the rows, null will create a new one]
+ * @param {string} arg.top , the top of setting view
+ * @param  {settingRow object} arg.rows     the rows data need to add
+ * @return {[type]}     [description]
+ */
+UI.createSettingView = function(arg) {
+    var container;
+    if (arg.container) {
+        container = arg.container;
+    } else {
+        //create a new one if there is no define the container
+        container = Ti.UI.createView({
+            bottom: arg.bottom?arg.bottom:'10dp',
+            backgroundColor: '#fff',
+            borderRadius: 10,
+            left: '20dp',
+            right: '20dp',
+            height: Ti.UI.SIZE,
+            layout: 'vertical'
+        });
+    }
+    //add the rows inot the view
+    var index = 1;
+    _.each(arg.rows, function(row) {
+        Alloy.Globals.CB.Debug.dump(row, 97, 'setting');
+        container.add(row);
+        //add a line
+        if (index < arg.rows.length) {
+            var lineView = Ti.UI.createView({
+                width: Ti.UI.FILL,
+                height: '1dp',
+                backgroundColor: '#ccc'
+            });
+            container.add(lineView);
+        }
+    });
+
+    return container;
+};
+
+/**
+ * [createSettingRow create the setting row]
+ * @param  {[string]} arg.text.title ,the text in row
+ * @param  {[string]} arg.text.subtitle ,the sub title in row
+ * @param {string} arg.backgroundColor , the backgroundColor of the row, default is '#fff'
+ * @param {string} arg.text.top , the top of the text, default is '5dp'
+ * @param {string} arg.text.left , the left of the text, default is '10dp'
+ * @param {string} arg.text.color , the color of the text, default is '#000'
+ * @param {string} arg.text.fontSize , the fontSize of the text, default is '16dp'
+ * @param {string} arg.text.subtop , the top of the sub title, default is '10dp'
+ * @param {string} arg.text.subright , the right of the sub title, default is '28dp'
+ * @param {string} arg.text.subcolor , the color of the sub title, default is '#000'
+ * @param {string} arg.text.subfontSize , the fontSize of the sub title, default is '14dp'
+ * @param {string} arg.data , the data need to pass to the next page
+ * @param {string} arg.hasChild, it will show the arrow button if that true
+ * @param {string} arg.hasCheckBox, it will show the hasCheckBox button if that true
+ * @param {string} arg.checkBoxValue, the checkBox default value
+ * @param {string} arg.checkBoxChange, checkBox change callback event
+ * @param {string} arg.pushController , the next controller need to show when click the row
+ */
+UI.createSettingRow = function(arg) {
+    var row = Ti.UI.createView({
+        //id: arg.id,
+        isRow: true,
+        width: Ti.UI.FILL,
+        height: arg.height?arg.height:'40dp',
+        backgroundColor: arg.backgroundColor ? arg.backgroundColor : '#fff',
+        data: arg.data
+    });
+
+    if (arg.text) {
+        var title = Ti.UI.createLabel({
+            text: arg.text.title,
+            top: arg.text.top ? arg.text.top : '5dp',
+            left: arg.text.left ? arg.text.left : '10dp',
+            color: arg.text.color ? arg.text.color : '#000',
+            font: {
+                fontSize: arg.text.fontSize ? arg.text.fontSize : '16dp'
+            }
+        });
+        row.add(title);
+
+        if (arg.text.subtitle) {
+            var subtitle = Ti.UI.createLabel({
+                text: arg.text.subtitle,
+                top: arg.text.subtop ? arg.text.subtop : '10dp',
+                right: arg.text.subleft ? arg.text.subleft : '28dp',
+                color: arg.text.subcolor ? arg.text.subcolor : '#000',
+                font: {
+                    fontSize: arg.text.subfontSize ? arg.text.subfontSize : '14dp'
+                }
+            });
+            row.add(subtitle);
+        }
+    }
+
+    if (arg.hasChild) {
+        var btnArrow = Ti.UI.createButton({
+            right: '10dp',
+            top: '15dp',
+            width: '12dp',
+            height: '15dp',
+            backgroundImage: '/images/arrow.png'
+        });
+        row.add(btnArrow);
+    }
+
+    if (arg.hasCheckBox) {
+        var checkBox = Ti.UI.createSwitch({
+            value: arg.checkBoxValue,
+            right: '10dp'
+        });
+
+        if (OS_ANDROID) {
+            checkBox.style = Ti.UI.Android.SWITCH_STYLE_CHECKBOX;
+        }
+
+        checkBox.addEventListener('change', function(e) {
+            arg.checkBoxChange && arg.checkBoxChange(e);
+        });
+
+        row.add(checkBox);
+    }
+
+    row.addEventListener('click', function(e) {
+        //change the bg color only start with row
+        if (e.source.isRow) {
+            e.source.animate({
+                backgroundColor: 'blue',
+                duration: 100
+            }, function() {
+                e.source.backgroundColor = 'blue';
+                e.source.animate({
+                    backgroundColor: '#fff',
+                    duration: 100
+                }, function() {
+                    e.source.backgroundColor = '#fff';
+                })
+            });
+        }
+
+        if (arg.pushController) {
+            Alloy.Globals.CB.pushController({
+                controller: arg.pushController,
+                animation: Alloy.Globals.CB.UI.AnimationStyle.NavLeft,
+                data: e.source.data
+            });
+        }
+    });
+
+    return row;
 };
 
 /*
