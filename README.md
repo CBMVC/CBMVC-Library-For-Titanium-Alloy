@@ -23,6 +23,13 @@ With this library, please update your titanium sdk to 3.0. (it's seem there is a
 11. Support comstom tabs (reference to [Codestrong](https://github.com/appcelerator/Codestrong))
 12. (ver1.1) Support wordpress xml-rpc
 
+# Version 1.5
+1. new function for create setting view
+2. add datejs lib
+3. add viewScrollr lib
+4. add youtube player lib
+5. other bugs fixed
+
 # Version 1.2
 
 fixed SlideDown and None Animation style cannot show the page
