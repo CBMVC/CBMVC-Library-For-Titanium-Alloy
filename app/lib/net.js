@@ -41,40 +41,73 @@ Net.setWebService = function(ws) {
  *  opts.onload     : callback function in onload event
  *  opts.notToJSON  : whether return JSON format, default is return to JSON
  *  opts.returnXML  : whether return XML format, default is return Text
+ *  opts.uploadFile : whether is upload file
+ *  opts.urlParams  : the params for url
  */
 Net.request = function(opts) {
     // Setup the xhr object
     var xhr = Ti.Network.createHTTPClient(),
         url = webService;
 
+    //xhr.timeout = (opts.timeout) ? opts.timeout : 2000;
+
     //check the network status at first
-    if(!Ti.Network.online){
-        util.alert(util.L('networkError'),util.L('error'));
+    if (!Ti.Network.online) {
+        Alloy.Globals.CB.Util.actInd.hide();
+        if (!Alloy.Globals.CB.HasNetError) {
+            Alloy.Globals.CB.HasNetError = true;
+            util.alert(util.L('networkError'), util.L('error'));
+        }
         return;
     }
-    if(opts.url){
+    if (opts.url) {
         url = opts.url;
     }
     //check whether has defined a webservice
-    if(!url){
-        util.alert(util.L('noWebService'),util.L('error'));
+    if (!url) {
+        Alloy.Globals.CB.Util.actInd.hide();
+        Alloy.Globals.CB.HasNetError = true;
+        util.alert(util.L('noWebService'), util.L('error'));
         return;
     }
 
     // Set the timeout or a default if one is not provided
-    //xhr.timeout = (opts.timeout) ? opts.timeout : 2000;
+    xhr.timeout = (opts.timeout) ? opts.timeout : 20000;
     /**
      * Error handling
      * @param {Object} e The callback object
      */
     xhr.onerror = function(e) {
-        if(Alloy.Globals.CB.Util.actInd.actIndWin.actInd.isHide){
+
+        if (!Alloy.Globals.CB.Util.actInd.actIndWin.actInd.isHide) {
             Alloy.Globals.CB.Util.actInd.hide();
         }
-        if(opts.onerror) {
+        if (opts.onerror) {
             opts.onerror(e);
         } else {
-            Ti.API.error(e);
+            if (!Alloy.Globals.CB.HasNetError) {
+                Alloy.Globals.CB.HasNetError = true;
+                var alertDialog = Ti.UI.createAlertDialog({
+                    title: Alloy.Globals.CB.Util.L('error'),
+                    message: Alloy.Globals.CB.Util.L('networkError'),
+                    buttonNames: ['OK']
+                });
+
+                alertDialog.show();
+                // if (Alloy.CFG.isDebug) {
+                //     alert(e);
+                // } else {
+                //     Alloy.Globals.CB.HasNetError = true;
+                //     var alertDialog = Ti.UI.createAlertDialog({
+                //         title: Alloy.Globals.CB.Util.L('error'),
+                //         message: Alloy.Globals.CB.Util.L('networkErr'),
+                //         buttonNames: ['OK']
+                //     });
+
+                //     alertDialog.show();
+                // }
+                Ti.API.error(e);
+            }
         }
         xhr = null;
     };
@@ -86,20 +119,21 @@ Net.request = function(opts) {
      */
     xhr.onload = function() {
         // If successful
-        //debug.dump(this.responseText, 85, 'net.js');
+        //debug.dump(this.responseText, 86, 'net.js');
         //debug.dump(this.responseXML, 86, 'net.js');
         try {
-            if(opts.isDownload) {
+            if (opts.isDownload) {
                 opts.onload && opts.onload(xhr.status, this.responseData);
-            }else if(opts.returnXML){
+            } else if (opts.returnXML) {
                 opts.onload(this.responseXML);
-            }else {
+            } else {
                 var data = this.responseText;
-                if(data) {
-                    if(!opts.notToJSON){
+                //debug.dump(data, 99, 'net.js');
+                if (data) {
+                    if (!opts.notToJSON) {
                         data = JSON.parse(data);
                     }
-                    if(opts.onload) {
+                    if (opts.onload) {
                         opts.onload(data);
                     } else {
                         return data;
@@ -108,7 +142,7 @@ Net.request = function(opts) {
             }
         }
         // If not successful
-        catch(e) {
+        catch (e) {
             xhr.onerror(e);
         }
     };
@@ -116,25 +150,47 @@ Net.request = function(opts) {
     xhr.ondatastream = function(data) {
         try {
             opts.ondatastream && opts.ondatastream(data);
-        } catch(e) {
+        } catch (e) {
             xhr.onerror(e);
         }
     };
 
+
+    xhr.onsendstream = function(data) {
+        try {
+            opts.onsendstream && opts.onsendstream(data);
+        } catch (e) {
+            xhr.onerror(e);
+        }
+    };
+
+
     // Open the remote connection
-    if(opts.method){
-        url += webService + opts.method;
+    if (opts.method) {
+        url += opts.method;
     }
-debug.echo(url,121,'net');
-    if(opts.type) {
+
+    if(opts.urlParams){
+        url += opts.urlParams.lang + '/' + opts.urlParams.controller + '/' + opts.urlParams.action;
+    }
+    Alloy.Globals.CB.Debug.echo(url, 159, 'net=========');
+    if (opts.type) {
         xhr.open(opts.type, url);
     } else {
-        xhr.open('GET', url);
+        xhr.open('POST', url);
     }
 
-    xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+    xhr.setRequestHeader('enctype', 'multipart/form-data');
 
-    if(opts.data) {
+    //xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+    //xhr.setRequestHeader('Accept', 'application/json; charset=utf-8');
+    // if(opts.uploadFile){
+    //    xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+    //    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    // }
+
+
+    if (opts.data) {
         // send the data
         //xhr.send(Ti.Network.encodeURIComponent(JSON.stringify(opts.data)));
         xhr.send(opts.data);
@@ -153,27 +209,30 @@ debug.echo(url,121,'net');
 Net.downloadRemoteFile = function(fileInfo) {
     var requestObj = {
         url: fileInfo.url,
+        type: 'GET',
         isDownload: true,
         onerror: function(d) {
             debug.dump(d, 120, 'net.js error');
+            Alloy.Globals.CB.Util.progressBar.hide();
+            alert('Download file failed!')
             //debug.echo(util.getAppDataDirectory(), 117, 'new.js');
         },
         ondatastream: function(data) {
             //debug.echo('start==folder: ===' + data.progress, 123, 'new.js');
-            if(data && fileInfo.updateProgress) {
+            if (data && fileInfo.updateProgress) {
                 var value = parseInt(data.progress * 100, 10);
                 fileInfo.updateProgress(value);
             }
         },
         onload: function(status, data) {
-            debug.echo('status: ' + status, 131, 'net.js');
+            debug.echo('status: ' + status, 208, 'net.js');
             var directory = Ti.Filesystem.getFile(util.getAppDataDirectory() + Alloy.CFG.downloadFolder);
-            if(!directory.exists()) {
+            if (!directory.exists()) {
                 directory.createDirectory();
             }
             var filename = directory.resolve() + Ti.Filesystem.separator + fileInfo.filename;
-            if(status == 200) {
-                if(data) {
+            if (status == 200) {
+                if (data) {
                     var file = Ti.Filesystem.getFile(filename);
                     file.write(data); //download complete!
                     fileInfo.complete(filename);
@@ -199,10 +258,10 @@ Net.downloadRemoteFile = function(fileInfo) {
  */
 Net.downloadBatchFiles = function(files, callback, downloadedFiles) {
     var total = files.length;
-    if(downloadedFiles === undefined){
+    if (downloadedFiles === undefined) {
         downloadedFiles = [];
     }
-    if(total > 0) {
+    if (total > 0) {
         util.progressBar.setCounter(1);
         Net.downloadRemoteFile({
             url: files[total - 1].url,
