@@ -38,11 +38,11 @@ CB.Version = Ti.App.version;
 CB.UI = require('ui');
 CB.Util = require('util');
 CB.Net = require('net');
-//CB.WP = require('wp');
+CB.WP = require('wp');
 CB.Debug = require('debug');
 CB.Cache = require('cache');
 CB.Date = require('date');
-//CB.Youtube = require('youtube');
+CB.Youtube = require('youtube');
 
 /**
  * Init the core app setting
@@ -248,7 +248,7 @@ CB.pushController = function(args) {
             _mainContent.add(currentView);
             _mainContent.animate({
                 left: -contentWidth,
-                duration: OS_ANDROID ? args.duration + 1000 : args.duration
+                duration: OS_ANDROID ? args.duration + 700 : args.duration
             }, function() {
                 currentView.left = 0;
                 finishedPush(args, currentView, oldView, oldController);
@@ -268,7 +268,7 @@ CB.pushController = function(args) {
             _mainContent.add(currentView);
             _mainContent.animate({
                 left: 0,
-                duration: OS_ANDROID ? args.duration + 1000 : args.duration
+                duration: OS_ANDROID ? args.duration + 700 : args.duration
             }, function() {
                 finishedPush(args, currentView, oldView, oldController);
             });
