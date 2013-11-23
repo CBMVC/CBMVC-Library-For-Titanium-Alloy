@@ -487,14 +487,17 @@ Utility.reverse = function(str) {
  * @param  {[type]} currUnit [description]
  * @return {[type]}          [description]
  */
-Utility.unit = function(val, currUnit){
+Utility.unit = function(val, factor, currUnit){
+    if(!factor){
+        factor = 2;
+    }
     if(!currUnit){
         currUnit = 'dp';
     }
     if(this.isNexus7){
-        val = val * 2;
+        val = val * factor;
     }
-    Alloy.Globals.CB.Debug.echo(val, 495, 'util');
+    Alloy.Globals.CB.Debug.echo(val, 500, 'util');
     return val + currUnit;
 }
 
@@ -505,25 +508,25 @@ Utility.unit = function(val, currUnit){
  */
 Utility.setStyle = function(element, args){
     if(args.top){
-        element.top = this.unit(args.top);
+        element.top = this.unit(args.top, args.factor, args.unit);
     }
     if(args.bottom){
-        element.bottom = this.unit(args.bottom);
+        element.bottom = this.unit(args.bottom, args.factor, args.unit);
     }
     if(args.left){
-        element.left = this.unit(args.left);
+        element.left = this.unit(args.left, args.factor, args.unit);
     }
     if(args.right){
-        element.right = this.unit(args.right);
+        element.right = this.unit(args.right, args.factor, args.unit);
     }
     if(args.width){
-        element.width = this.unit(args.width);
+        element.width = this.unit(args.width, args.factor, args.unit);
     }
     if(args.height){
-        element.height = this.unit(args.height);
+        element.height = this.unit(args.height, args.factor, args.unit);
     }
     if(args.fontSize){
-        element.font = {fontSize:this.unit(args.fontSize)};
+        element.font = {fontSize:this.unit(args.fontSize, args.factor, args.unit)};
     }
 }
 
