@@ -8,7 +8,7 @@ $.onLoad = function() {
 $.goNext.addEventListener('click', function(e) {
     Alloy.Globals.CB.pushController({
         controller: 'agenda',
-        animation: Alloy.Globals.CB.UI.AnimationStyle.NavLeft,
+        animation: Alloy.Globals.CB.UI.AnimationStyle.SlideLeft,
         //pass data to next controller
         data: [{
             'test': '123123123'

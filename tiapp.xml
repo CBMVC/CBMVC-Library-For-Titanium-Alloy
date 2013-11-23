@@ -35,7 +35,21 @@
             <orientation>Ti.UI.LANDSCAPE_RIGHT</orientation>
         </orientations>
     </iphone>
-    <android xmlns:android="http://schemas.android.com/apk/res/android"/>
+    <android xmlns:android="http://schemas.android.com/apk/res/android">
+        <!--Add the following tool and manifest entries.
+            Also add your theme name: android:theme="@style/Theme.MyThemeName"
+        -->
+        <tool-api-level>14</tool-api-level>
+        <manifest>
+            <application android:theme="@style/Theme.Action">
+                <!-- define the modal activity here so that it also receives our custom theme>
+                see: http://docs.appcelerator.com/titanium/latest/#!/guide/Android_Themes -->
+                <activity
+                    android:configChanges="keyboardHidden|orientation|screenSize" android:name="org.appcelerator.titanium.TiModalActivity"/>
+            </application>
+            <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="16"/>
+        </manifest>
+    </android>
     <mobileweb>
         <precache/>
         <splash>
@@ -44,6 +58,7 @@
         </splash>
         <theme>default</theme>
     </mobileweb>
+    <modules/>
     <modules>
         <module platform="commonjs">ti.cloud</module>
         <module platform="android" version="1.0">ti.physicalSizeCategory</module>
@@ -56,8 +71,10 @@
         <target device="iphone">true</target>
         <target device="mobileweb">false</target>
     </deployment-targets>
-    <sdk-version>3.1.2.GA</sdk-version>
+    <sdk-version>3.1.3.GA</sdk-version>
     <plugins>
         <plugin version="1.0">ti.alloy</plugin>
     </plugins>
+    <property name="ti.android.bug2373.finishfalseroot" type="bool">true</property>
+   <!--  <property name="ti.deploytype">development</property> -->
 </ti:app>

@@ -1,0 +1,5 @@
+<Alloy>
+    <Window class="container" id="win2">
+        <Button id="btnClose" title="Close"/>
+    </Window>
+</Alloy>

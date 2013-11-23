@@ -480,8 +480,56 @@ Utility.reverse = function(str) {
     return str.split("").reverse().join("");
 };
 
+
+/**
+ * set the unit for support Nexus7 layout
+ * @param  {[type]} val      [description]
+ * @param  {[type]} currUnit [description]
+ * @return {[type]}          [description]
+ */
+Utility.unit = function(val, currUnit){
+    if(!currUnit){
+        currUnit = 'dp';
+    }
+    if(this.isNexus7){
+        val = val * 2;
+    }
+    Alloy.Globals.CB.Debug.echo(val, 495, 'util');
+    return val + currUnit;
+}
+
+/**
+ * set element's style for support Nexus7 layout
+ * @param {[type]} element [description]
+ * @param {[type]} args    [description]
+ */
+Utility.setStyle = function(element, args){
+    if(args.top){
+        element.top = this.unit(args.top);
+    }
+    if(args.bottom){
+        element.bottom = this.unit(args.bottom);
+    }
+    if(args.left){
+        element.left = this.unit(args.left);
+    }
+    if(args.right){
+        element.right = this.unit(args.right);
+    }
+    if(args.width){
+        element.width = this.unit(args.width);
+    }
+    if(args.height){
+        element.height = this.unit(args.height);
+    }
+    if(args.fontSize){
+        element.font = {fontSize:this.unit(args.fontSize)};
+    }
+}
+
 Utility.isTablet = Math.min(Ti.Platform.displayCaps.platformHeight, Ti.Platform.displayCaps.platformWidth) > 600;
 Utility.isAndroid = Ti.Platform.osname == 'android';
+Utility.isNexus7 = (OS_ANDROID && (Ti.Platform.displayCaps.platformWidth == 1280 || (Ti.Platform.displayCaps.platformWidth == 800 && Ti.Platform.displayCaps.platformHeight > 1200)));
 Utility.osname = Ti.Platform.osname;
 
 module.exports = Utility;

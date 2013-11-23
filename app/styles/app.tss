@@ -1,0 +1,7 @@
+"Window":{
+    navBarHidden:false
+},
+
+"Button[platform=android]":{
+    color:'#fff'
+}

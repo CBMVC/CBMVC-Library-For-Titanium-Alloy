@@ -16,7 +16,7 @@ $.onLoad = function() {
 $.back.addEventListener('click', function(e) {
     Alloy.Globals.CB.pushController({
         controller: 'home',
-        animation: Alloy.Globals.CB.UI.AnimationStyle.NavRight,
+        animation: Alloy.Globals.CB.UI.AnimationStyle.SlideRight,
         data: []
     });
 });
