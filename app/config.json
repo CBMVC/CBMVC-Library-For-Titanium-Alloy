@@ -8,7 +8,8 @@
         "downloadFolder":"download",
         "webService":"http://www.coderblog.in/",
         "xmlrpcService":"xmlrpc.php",
-        "msgType": "info"
+        "msgType": "info",
+        "database":"CBMVC"
     },
     "env:development": {
         "isDebug": true

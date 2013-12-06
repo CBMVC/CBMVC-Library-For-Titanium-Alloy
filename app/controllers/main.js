@@ -20,7 +20,7 @@ $.onLoad = function() {
 //      Alloy.Globals.CB.Debug.dump($.tabs., line, 'filename');
 // });
 
-Alloy.Globals.Tabs = $.tabs;
+Alloy.Globals.CB.Tabs = $.tabs;
 $.tabs && ($.tabs.on('change', function(e) {
     var ani = Alloy.Globals.CB.UI.AnimationStyle.FadeIn;
     var ac = null;
