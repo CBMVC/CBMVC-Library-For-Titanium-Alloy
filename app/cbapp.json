@@ -1,0 +1,26 @@
+{
+	"id": "CBMVC.001",
+	"version": "1.5",
+	"minimumVersion": "1.0",
+	"configurationUrl": "http://www.coderblog.in/app/app.json",
+	"legal": {
+		"copyright": "Copyright ‌2013 CBMVC",
+		"terms": "http://www.appcelerator.com/legal/terms-conditions/",
+		"privacy": ""
+	},
+	"settings": {
+		"share": "Check out this great CBMVC content",
+		"notifications": {
+			"enabled": false,
+			"provider": "UA",
+			"key": "AuKi5Qn3QKGTno3xX9ECYA",
+			"secret": "s-RDQejhRwmx-j4DCaXPMw"
+		},
+		"colors": {
+			"primary": "#327B9F",
+			"secondary": "#569BBE",
+			"text":	"#FFF"
+		},
+		"useSlideMenu": true
+	}
+}

@@ -36,6 +36,7 @@ var CB = {
     Cache : require('cache'),
     Date : require('date'),
     Youtube : require('youtube'),
+    Social : require('social'),
 
     /**
      * Holds data from the JSON config file
@@ -570,7 +571,7 @@ var CB = {
         });
         alertDialog.show();
     },
-    
+
     /**
      * Logs all console data
      * @param {String} _severity A severity type (debug, error, info, log, trace, warn)
