@@ -1,11 +1,11 @@
 var Alloy = require('alloy');
 
 var Cache = {
-	
-	Alloy.Globals.CBCache = [],
 
-	init : function(){
-	    Alloy.Globals.CBCache = [];
+	Data: [],
+
+	init: function() {
+
 	},
 
 	/**
@@ -13,17 +13,17 @@ var Cache = {
 	 * @param {[string]} key ,  the cache key
 	 * @param {[object]} object , the object save in cache
 	 */
-	set : function(key, object){
-	    Alloy.Globals.CBCache[key] = object;
+	set: function(key, object) {
+		Cache.Data[key] = object;
 	},
 
-	get : function(key){
-	    return Alloy.Globals.CBCache[key];
+	get: function(key) {
+		return Cache.Data[key];
 	},
 
-	clear : function(key){
-	    Alloy.Globals.CBCache[key] = '';
-	},
+	clear: function(key) {
+		Cache.Data[key] = '';
+	}
 }
 
 module.exports = Cache;

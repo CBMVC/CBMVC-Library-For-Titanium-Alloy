@@ -20,6 +20,7 @@
     "os:android": {},
     "dependencies": {
         "tabs": "1.0",
-        "loading": "1.0"
+        "loading": "1.0",
+        "com.chariti.loading": "1.0"
     }
 }

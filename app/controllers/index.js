@@ -1,96 +1,92 @@
-// $.main = Alloy.createController('main');
+$.main = Alloy.createController('main');
 
-// Alloy.Globals.CB.init({
-//     index: $.index,
-//     main: $.main.getView("content")
-// });
+Alloy.Globals.CB.init({
+	index: $.index,
+	main: $.main.getView("content")
+});
 
-// $.index.add($.main.getView());
+$.index.add($.main.getView());
 
-// $.main.onLoad();
-
-// $.index.open();
-
-$.button.addEventListener('click',function(e){
-    openBlueWindow();
-})
-
-Alloy.Globals.NavWin = $.index;
-
-var openBlueWindow = function(e) {
-    var win3 = Alloy.createController('navwin1').getView();
-    $.index.openWindow(win3, {
-        animated: true,
-        displayHomeAsUp: true
-    });
-}
-
-
+$.main.onLoad();
 
 // $.index.open();
 
+// $.button.addEventListener('click', function(e) {
+// 	openBlueWindow();
+// })
 
+// Alloy.Globals.NavWin = $.index;
 
-var ABH, actionBarHelper;
+// var openBlueWindow = function(e) {
+// 	var win3 = Alloy.createController('navwin1').getView();
+// 	$.index.openWindow(win3, {
+// 		animated: true,
+// 		displayHomeAsUp: true
+// 	});
+// }
 
-function doopen(e) {
-    if (OS_ANDROID) {
-        // we set the library only when the activity is available
-        ABH = require('actionbarhelper').actionBarHelper;
-        actionBarHelper = new ABH($.win1);
-        actionBarHelper.reloadMenu(); // this forces the actionbar to show menu options from XML
-        actionBarHelper.setTitle('I dare you to change me');
-    }
-}
+// // $.index.open();
 
-function changeTitle() {
-    actionBarHelper.setTitle('This is the new title');
-}
+// var ABH, actionBarHelper;
 
-function setUpButtonUp() {
-    actionBarHelper.setUpAction(function() {
-        alert('Hey, stop clicking!');
-    })
-}
+// function doopen(e) {
+// 	if(OS_ANDROID) {
+// 		// we set the library only when the activity is available
+// 		ABH = require('actionbarhelper').actionBarHelper;
+// 		actionBarHelper = new ABH($.win1);
+// 		actionBarHelper.reloadMenu(); // this forces the actionbar to show menu options from XML
+// 		actionBarHelper.setTitle('I dare you to change me');
+// 	}
+// }
 
-function setUpButtonDn() {
-    actionBarHelper.setUpAction();
-}
+// function changeTitle() {
+// 	actionBarHelper.setTitle('This is the new title');
+// }
 
-function setIcon() {
-    actionBarHelper.setIcon('/appicon2.png');
-}
+// function setUpButtonUp() {
+// 	actionBarHelper.setUpAction(function() {
+// 		alert('Hey, stop clicking!');
+// 	})
+// }
 
-function setBackground() {
-    actionBarHelper.setBackgroundImage('/appicon2.png');
-}
+// function setUpButtonDn() {
+// 	actionBarHelper.setUpAction();
+// }
 
-function show() {
-    actionBarHelper.show();
-}
+// function setIcon() {
+// 	actionBarHelper.setIcon('/appicon2.png');
+// }
 
-function hide() {
-    actionBarHelper.hide();
-}
+// function setBackground() {
+// 	actionBarHelper.setBackgroundImage('/appicon2.png');
+// }
 
-function onsaveclick(e) {
-    alert('Clicked save');
-}
+// function show() {
+// 	actionBarHelper.show();
+// }
 
-function onimageclick(e) {
-    alert('Clicked Image');
-}
+// function hide() {
+// 	actionBarHelper.hide();
+// }
 
-function onaboutclick(e) {
-    alert('Clicked about');
-}
+// function onsaveclick(e) {
+// 	alert('Clicked save');
+// }
 
-function oncreditsclick(e) {
-    alert('Clicked credits');
-}
+// function onimageclick(e) {
+// 	alert('Clicked Image');
+// }
 
-function opennewwin() {
-    Alloy.createController('win2').getView().open();
-}
+// function onaboutclick(e) {
+// 	alert('Clicked about');
+// }
+
+// function oncreditsclick(e) {
+// 	alert('Clicked credits');
+// }
+
+// function opennewwin() {
+// 	Alloy.createController('win2').getView().open();
+// }
 
 $.index.open();

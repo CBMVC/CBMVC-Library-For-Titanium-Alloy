@@ -26,5 +26,5 @@ exports.onBeforeClose = function() {};
  * @return {[type]} [description]
  */
 exports.getData = function() {
-    return args;
+	return args;
 };
