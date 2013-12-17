@@ -1,9 +1,9 @@
-<!-- <Alloy>
+<Alloy>
 	<Window class="container" navBarHidden="true" fullscreen="true">
 	</Window>
-</Alloy> -->
+</Alloy>
 
-<Alloy>
+<!-- <Alloy>
     <Window class="t-20">
         <View class="container bg-lightblue">
             <Label class="col col-1 bg-pink">Test</Label>
@@ -50,7 +50,7 @@
             </View>
         </View>
     </Window>
-</Alloy>
+</Alloy> -->
 
 <!-- Action Bar Testing Start-->
 <!-- <Alloy>

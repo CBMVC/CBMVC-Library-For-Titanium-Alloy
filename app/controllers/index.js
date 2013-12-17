@@ -1,15 +1,15 @@
-// $.main = Alloy.createController('main');
+$.main = Alloy.createController('main');
 
-// Alloy.Globals.CB.init({
-// 	index: $.index,
-// 	main: $.main.getView("content")
-// });
+Alloy.Globals.CB.init({
+	index: $.index,
+	main: $.main.getView("content")
+});
 
-// $.index.add($.main.getView());
+$.index.add($.main.getView());
 
-//$.main.onLoad();
+$.main.onLoad();
 
-$.index.open();
+// $.index.open();
 
 // $.button.addEventListener('click', function(e) {
 // 	openBlueWindow();

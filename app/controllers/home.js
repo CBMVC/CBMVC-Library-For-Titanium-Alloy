@@ -91,7 +91,7 @@ $.animate.addEventListener('click', function(e) {
 
 $.goNext.addEventListener('click', function(e) {
 	Alloy.Globals.CB.pushController({
-		controller: 'wriststrap',
+		controller: 'agenda',
 		animation: Alloy.Globals.CB.UI.AnimationStyle.SlideLeft,
 		//pass data to next controller
 		data: [{
