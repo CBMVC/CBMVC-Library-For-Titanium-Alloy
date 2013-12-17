@@ -35,6 +35,7 @@ var CB = {
 	Cache: require('cache'),
 	Date: require('date'),
 	Youtube: require('youtube'),
+	Animator: require('animator'),
 	//Social: require('social'),
 
 	/**
@@ -297,7 +298,7 @@ var CB = {
 	 */
 	pushController: function(args) {
 		if(args.useMainContent) {
-			CB._mainContent = mainContent;
+			CB._mainContent = CB.MainContent;
 		}
 
 		if(args.showInd) {
@@ -530,7 +531,7 @@ var CB = {
 		if(args.useInnerContent && CB._innerContent) {
 			CB._mainContent = CB._innerContent;
 		} else {
-			CB._mainContent = mainContent;
+			CB._mainContent = CB.MainContent;
 		}
 	},
 

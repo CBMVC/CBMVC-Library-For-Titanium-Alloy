@@ -10,6 +10,7 @@
         "xmlrpcService":"xmlrpc.php",
         "msgType": "info",
         "database":"CBMVC"
+        //"theme":"wriststrap"
     },
     "env:development": {
         "isDebug": true

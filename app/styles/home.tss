@@ -18,3 +18,6 @@
 '#popup':{
     top: '30%'
 }
+'#animate':{
+    bottom: '50dp'
+}

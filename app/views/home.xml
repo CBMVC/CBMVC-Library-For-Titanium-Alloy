@@ -4,6 +4,7 @@
         <Button id="goNext" > Go to next page</Button>
         <Button id="goN2" >Go next 2</Button>
         <Button id="popup" >Popup Win</Button>
+        <Button id="animate" >Show Animation</Button>
         <Label id="text"></Label>
     </View>
 </Alloy>
