@@ -11,3 +11,4 @@
 // Alloy.Globals.someGlobalFunction = function(){};
 Alloy.Globals.CB = require('core');
 
+ABC = require('core');

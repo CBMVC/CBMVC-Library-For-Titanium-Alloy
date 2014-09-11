@@ -2,6 +2,7 @@ exports.baseController = "base";
 
 $.onLoad = function() {
 
+	ABC.Util.actInd.init($.container);
 	//init the Activity Indicator
 	Alloy.Globals.CB.Util.actInd.init($.container);
 
